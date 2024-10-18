@@ -6,7 +6,7 @@
     <title>Musheer Alam (Musheer360)</title>
     <meta
       name="description"
-      content="Welcome to Musheer Alam's Web Terminal! Dive into my interactive site to explore my skills, projects, and contact info. Navigate through a terminal-themed interface to uncover details about my work and discover fun easter eggs. It's a unique showcase of my tech journey and expertise. Experience Musheer360's Web Terminal for a fresh twist on a personal portfolio."
+      content="Explore Musheer Alam's terminal themed portfolio. Discover expertise in cybersecurity, cloud, and AI. Navigate projects and connect with a tech innovator."
     />
     <meta name="author" content="Musheer Alam" />
     <link rel="canonical" href="https://www.musheer360.com" />
@@ -64,60 +64,84 @@
     />
     <link rel="manifest" href="https://www.musheer360.com/manifest.json" />
     <script type="application/ld+json">
-      {
-        "@context": "http://schema.org",
-        "@type": "WebPage",
-        "name": "Musheer Alam's Portfolio",
-        "description": "Portfolio showcasing the skills and projects of Musheer Alam, a Computer Science student passionate about technology, AI, cybersecurity, Linux, and cloud computing.",
+    {
+      "@context": "http://schema.org",
+      "@type": "WebPage",
+      "name": "Musheer Alam's Portfolio",
+      "description": "Portfolio showcasing the skills and projects of Musheer Alam, a Computer Science student passionate about technology, AI, cybersecurity, Linux, and cloud computing.",
+      "url": "https://www.musheer360.com",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Musheer Alam",
         "url": "https://www.musheer360.com",
-        "mainEntity": {
-          "@type": "Person",
-          "name": "Musheer Alam",
-          "url": "https://www.musheer360.com",
-          "sameAs": [
-            "https://linkedin.com/in/musheer360",
-            "https://github.com/musheer360",
-            "https://x.com/musheer360",
-            "https://musheer360.tech",
-            "https://musheer360.me"
-          ],
-          "jobTitle": "Aspiring Cybersecurity Expert",
-          "skills": [
-            "Cybersecurity",
-            "Network Security",
-            "Web App Security",
-            "Programming",
-            "Linux Administration",
-            "Cloud Computing"
-          ]
-        },
-        "hasPart": [
-          {
-            "@type": "CreativeWork",
-            "name": "BlankSlate",
-            "url": "https://linktr.ee/BlankSlateWeb",
-            "description": "Minimalistic new tab extension available for Chrome, Edge, and Firefox."
-          },
-          {
-            "@type": "CreativeWork",
-            "name": "QuoteSlate",
-            "url": "https://github.com/musheer360/QuoteSlate",
-            "description": "API for inspirational quotes, built with Node.js and Postgres, currently hosts over 1,600 quotes."
-          },
-          {
-            "@type": "CreativeWork",
-            "name": "NovaChat",
-            "url": "https://github.com/musheer360/NovaChat",
-            "description": "AI-powered Android chat app using Google's Gemini API for NLP with a simple and intuitive interface."
-          },
-          {
-            "@type": "CreativeWork",
-            "name": "Sony Xperia M Homelab",
-            "url": "https://web.musheer360.com",
-            "description": "Revived an 11-year-old Sony Xperia M to run LineageOS with Termux as a mini server for tech experiments."
-          }
+        "sameAs": [
+          "https://linkedin.com/in/musheer360",
+          "https://github.com/musheer360",
+          "https://x.com/musheer360",
+          "https://musheer360.tech",
+          "https://musheer360.me"
+        ],
+        "jobTitle": "Aspiring Cybersecurity Expert",
+        "skills": [
+          "Cybersecurity",
+          "Network Security",
+          "Web App Security",
+          "Programming",
+          "Linux Administration",
+          "Cloud Computing"
         ]
-      }
+      },
+      "mainContentOfPage": {
+        "@type": "WebPageElement",
+        "cssSelector": "#terminal"
+      },
+      "relatedLink": [
+        "https://linktr.ee/BlankSlateWeb",
+        "https://github.com/musheer360/QuoteSlate",
+        "https://github.com/musheer360/NovaChat",
+        "https://web.musheer360.com"
+      ],
+      "hasPart": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "BlankSlate",
+          "url": "https://linktr.ee/BlankSlateWeb",
+          "description": "Minimalistic new tab extension available for Chrome, Edge, and Firefox.",
+          "applicationCategory": "Browser Extension",
+          "operatingSystem": "Chrome, Firefox, Edge",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "name": "QuoteSlate",
+          "codeRepository": "https://github.com/musheer360/QuoteSlate",
+          "description": "API for inspirational quotes, built with Node.js and Postgres, currently hosts over 1,600 quotes.",
+          "programmingLanguage": "Node.js"
+        },
+        {
+          "@type": "MobileApplication",
+          "name": "NovaChat",
+          "url": "https://github.com/musheer360/NovaChat",
+          "description": "AI-powered Android chat app using Google's Gemini API for NLP with a simple and intuitive interface.",
+          "operatingSystem": "Android",
+          "applicationCategory": "ChatApplication"
+        },
+        {
+          "@type": "TechArticle",
+          "name": "Sony Xperia M Homelab",
+          "url": "https://web.musheer360.com",
+          "description": "Revived an 11-year-old Sony Xperia M to run LineageOS with Termux as a mini server for tech experiments.",
+          "about": {
+            "@type": "Thing",
+            "name": "Homelab"
+          }
+        }
+      ]
+    }
     </script>
     <style>
       * {
@@ -227,162 +251,6 @@
     </style>
   </head>
   <body>
-    <!-- INVISIBLE SECTION -->
-    <header>
-      <h1 style="display: none">
-        Musheer Alam (Musheer360) - Cybersecurity, Cloud, Linux, Web, and Tech Projects
-      </h1>
-    </header>
-    <main>
-      <div style="display: none">
-        <h2>Available Commands:</h2>
-        <p>
-          <strong>about</strong> - Discover more about me and my journey in the
-          tech world.
-        </p>
-        <p>
-          <strong>skills</strong> - Explore my diverse skill set and areas of
-          expertise.
-        </p>
-        <p>
-          <strong>projects</strong> - Check out the innovative projects I have
-          developed.
-        </p>
-        <p>
-          <strong>contact</strong> - Get in touch with me for collaborations or
-          inquiries.
-        </p>
-        <p>
-          <strong>clear</strong> - Clear the terminal screen for a fresh start.
-        </p>
-        <p>
-          <strong>defend</strong> - (Details to be updated) Learn about my
-          approaches to cybersecurity defense.
-        </p>
-
-        <h2>About Me</h2>
-        <p>
-          Hello! I'm <strong>Musheer Alam</strong>, a passionate Computer
-          Science student with a strong affinity for technology and innovation.
-          My primary focus lies in <strong>cybersecurity</strong>, where I
-          strive to protect digital assets and enhance security measures. I'm
-          also a devoted user of <strong>Linux</strong>, utilizing it for system
-          administration and development tasks. Additionally, I am deeply
-          interested in the advancements of
-          <strong>Artificial Intelligence</strong> and how it can shape our
-          future. Outside of coding and tech exploration, I engage in projects
-          that make a meaningful impact in the tech community. Fun fact: I
-          proudly run Arch Linux on my systems!
-        </p>
-
-        <h2>Skills</h2>
-        <p>
-          <strong>Cybersecurity:</strong> Proficient in Network and Cloud
-          Security, Web Application Security, Endpoint Security, Cryptography,
-          and Malware Analysis.
-        </p>
-        <p>
-          <strong>Programming:</strong> Experienced in multiple programming
-          languages, including Python, C/C++, Java, Kotlin, HTML, CSS,
-          JavaScript, jQuery, and Bash scripting. Well-versed in Data Structures
-          and Algorithms.
-        </p>
-        <p>
-          <strong>Linux:</strong> Competent in System Administration, Kernel
-          Optimization, and Shell Scripting for effective server management and
-          optimization.
-        </p>
-        <p>
-          <strong>Other Technologies:</strong> Knowledgeable in Cloud Computing
-          (AWS, Azure, GCP), Database Management (Oracle, MySQL), and proficient
-          in Hardware and PC Building.
-        </p>
-
-        <h2>Projects</h2>
-        <p>
-          •
-          <a
-            href="https://linktr.ee/BlankSlateWeb"
-            target="_blank"
-            rel="noopener noreferrer"
-            >BlankSlate</a
-          >: A minimalistic new tab extension designed for Chrome, Edge, and
-          Firefox that enhances the browsing experience with daily changing
-          quotes and customizable features.
-        </p>
-        <p>
-          •
-          <a
-            href="https://github.com/musheer360/QuoteSlate"
-            target="_blank"
-            rel="noopener noreferrer"
-            >QuoteSlate</a
-          >: An API for inspirational quotes built with Node.js, currently
-          hosting over 1,600 curated quotes to motivate and inspire users.
-        </p>
-        <p>
-          •
-          <a
-            href="https://github.com/musheer360/NovaChat"
-            target="_blank"
-            rel="noopener noreferrer"
-            >NovaChat</a
-          >: An AI-powered Android chat application leveraging Google's Gemini
-          API for advanced natural language processing capabilities.
-        </p>
-        <p>
-          •
-          <a
-            href="https://web.musheer360.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Sony Xperia M Homelab</a
-          >: Successfully revived an 11-year-old Sony Xperia M by running
-          LineageOS and Termux to create a mini server for various tech
-          experiments and learning.
-        </p>
-
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:me@musheer360.com">me@musheer360.com</a></p>
-        <p>
-          GitHub:
-          <a
-            href="https://github.com/musheer360"
-            target="_blank"
-            rel="noopener noreferrer"
-            >github.com/musheer360</a
-          >
-        </p>
-        <p>
-          LinkedIn:
-          <a
-            href="https://linkedin.com/in/musheer360"
-            target="_blank"
-            rel="noopener noreferrer"
-            >linkedin.com/in/musheer360</a
-          >
-        </p>
-        <p>
-          X:
-          <a
-            href="https://x.com/musheer360"
-            target="_blank"
-            rel="noopener noreferrer"
-            >x.com/musheer360</a
-          >
-        </p>
-        <p>
-          YouTube:
-          <a
-            href="https://www.youtube.com/@TechAceYoutube"
-            target="_blank"
-            rel="noopener noreferrer"
-            >youtube.com/@TechAceYoutube</a
-          >
-        </p>
-      </div>
-
-      <!-- VISIBLE SECTION -->
       <div id="terminal">
         <div id="initial-message" class="output success">Welcome to musheer360's web terminal.</div>
         <div id="help-message" class="output">Type 'help' for available commands.</div>
@@ -405,7 +273,6 @@
           </div>
         </div>
       </div>
-    </main>
     <script>
       const commandOutput = document.getElementById("command-output");
       const userInput = document.getElementById("user-input");
@@ -436,7 +303,7 @@ I'm busy creating things that actually matter.
 Oh, and did I mention? I use Arch BTW.`,
         skills: () => `Skills:
 
-    • Cybersecurity:
+     Cybersecurity:
       - Network & Cloud Security
       - Web App & Endpoint Security
       - Cryptography & Malware Analysis
@@ -461,14 +328,14 @@ Oh, and did I mention? I use Arch BTW.`,
     • <a href="https://linktr.ee/BlankSlateWeb" target="_blank">BlankSlate</a>:
       - Minimalistic new tab extension.
       - Provides a minimalist new tab page.
-      - Available for Chrome, Edge, and Firefox.
+      - Supports Chrome, Edge, and Firefox.
 
-    • <a href="https://github.com/musheer360/QuoteSlate" target="_blank">QuoteSlate</a>:
+     <a href="https://github.com/musheer360/QuoteSlate" target="_blank">QuoteSlate</a>:
       - API for inspirational quotes.
       - Built with Node.js.
       - Currently hosts over 1,600 quotes.
 
-    • <a href="https://github.com/musheer360/NovaChat" target="_blank">NovaChat</a>:
+     <a href="https://github.com/musheer360/NovaChat" target="_blank">NovaChat</a>:
       - AI-powered Android chat app.
       - Uses Google's Gemini API for NLP.
       - Simple and intuitive interface.
@@ -476,14 +343,13 @@ Oh, and did I mention? I use Arch BTW.`,
     • <a href="https://web.musheer360.com" target="_blank">Sony Xperia M Homelab</a>:
       - Revived an 11-year-old Sony Xperia M.
       - Runs LineageOS with Termux.
-      - A mini server for tech experiments.
-    `,
+      - A mini server for tech experiments.`,
         contact: () => `Reach out:
 
     • Email: <a href="mailto:me@musheer360.com">me@musheer360.com</a>
     • GitHub: <a href="https://github.com/musheer360" target="_blank" rel="noopener">github.com/musheer360</a>
     • LinkedIn: <a href="https://linkedin.com/in/musheer360" target="_blank" rel="noopener">linkedin.com/in/musheer360</a>
-    • X: <a href="https://x.com/musheer360" target="_blank" rel="noopener">x.com/musheer360</a>
+     X: <a href="https://x.com/musheer360" target="_blank" rel="noopener">x.com/musheer360</a>
     • YouTube: <a href="https://www.youtube.com/@TechAceYoutube" target="_blank" rel="noopener">youtube.com/@TechAceYoutube</a>`,
         clear: () => {
           commandOutput.innerHTML = "";
