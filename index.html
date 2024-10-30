@@ -1,296 +1,269 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Musheer Alam (Musheer360)</title>
-    <meta
-      name="description"
-      content="Explore Musheer Alam's terminal themed portfolio. Discover expertise in cybersecurity, cloud, and AI. Navigate projects and connect with a tech innovator."
-    />
-    <meta name="author" content="Musheer Alam" />
-    <link rel="canonical" href="https://www.musheer360.com" />
-    <meta property="og:title" content="Musheer Alam" />
-    <meta
-      property="og:description"
-      content="Musheer Alam's personal space on the web."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.musheer360.com" />
-    <meta property="og:image" content="https://www.musheer360.com/banner.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Musheer Alam" />
-    <meta
-      name="twitter:description"
-      content="Musheer Alam's personal space on the web."
-    />
-    <meta
-      name="twitter:image"
-      content="https://www.musheer360.com/banner.jpg"
-    />
-    <link
-      rel="icon"
-      href="https://www.musheer360.com/favicon.ico"
-      type="image/x-icon"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="https://www.musheer360.com/favicon-16x16.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="https://www.musheer360.com/favicon-32x32.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="https://www.musheer360.com/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="https://www.musheer360.com/android-chrome-192x192.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="512x512"
-      href="https://www.musheer360.com/android-chrome-512x512.png"
-    />
-    <link rel="manifest" href="https://www.musheer360.com/manifest.json" />
-    <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "WebPage",
-      "name": "Musheer Alam's Portfolio",
-      "description": "Portfolio showcasing the skills and projects of Musheer Alam, a Computer Science student passionate about technology, AI, cybersecurity, Linux, and cloud computing.",
-      "url": "https://www.musheer360.com",
-      "mainEntity": {
-        "@type": "Person",
-        "name": "Musheer Alam",
-        "url": "https://www.musheer360.com",
-        "sameAs": [
-          "https://linkedin.com/in/musheer360",
-          "https://github.com/musheer360",
-          "https://x.com/musheer360",
-          "https://musheer360.tech",
-          "https://musheer360.me"
-        ],
-        "jobTitle": "Aspiring Cybersecurity Expert",
-        "skills": [
-          "Cybersecurity",
-          "Network Security",
-          "Web App Security",
-          "Programming",
-          "Linux Administration",
-          "Cloud Computing"
-        ]
-      },
-      "mainContentOfPage": {
-        "@type": "WebPageElement",
-        "cssSelector": "#terminal"
-      },
-      "relatedLink": [
-        "https://linktr.ee/BlankSlateWeb",
-        "https://github.com/musheer360/QuoteSlate",
-        "https://github.com/musheer360/NovaChat",
-        "https://web.musheer360.com"
-      ],
-      "hasPart": [
-        {
-          "@type": "SoftwareApplication",
-          "name": "BlankSlate",
-          "url": "https://linktr.ee/BlankSlateWeb",
-          "description": "Minimalistic new tab extension available for Chrome, Edge, and Firefox.",
-          "applicationCategory": "Browser Extension",
-          "operatingSystem": "Chrome, Firefox, Edge",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          }
-        },
-        {
-          "@type": "SoftwareSourceCode",
-          "name": "QuoteSlate",
-          "codeRepository": "https://github.com/musheer360/QuoteSlate",
-          "description": "API for inspirational quotes, built with Node.js and Postgres, currently hosts over 1,600 quotes.",
-          "programmingLanguage": "Node.js"
-        },
-        {
-          "@type": "MobileApplication",
-          "name": "NovaChat",
-          "url": "https://github.com/musheer360/NovaChat",
-          "description": "AI-powered Android chat app using Google's Gemini API for NLP with a simple and intuitive interface.",
-          "operatingSystem": "Android",
-          "applicationCategory": "ChatApplication"
-        },
-        {
-          "@type": "TechArticle",
-          "name": "Sony Xperia M Homelab",
-          "url": "https://web.musheer360.com",
-          "description": "Revived an 11-year-old Sony Xperia M to run LineageOS with Termux as a mini server for tech experiments.",
-          "about": {
-            "@type": "Thing",
-            "name": "Homelab"
-          }
-        }
-      ]
-    }
-    </script>
-    <style>
-      * {
-        cursor: default !important;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        background-color: #000;
-        color: #0f0;
-        font-family: "Courier New", monospace;
-        overflow: hidden;
-        user-select: none;
-      }
-      #terminal {
-        height: 100vh;
-        padding: 20px;
-        box-sizing: border-box;
-        overflow-y: scroll;
-        scroll-behavior: auto;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-      }
-      #terminal::-webkit-scrollbar {
-        display: none;
-      }
-      #input-line {
-        display: flex;
-        align-items: center;
-      }
-      #prompt {
-        color: #0f0;
-        margin-right: 10px;
-      }
-      #input-container {
-        position: relative;
-        flex-grow: 1;
-      }
-      #user-input {
-        background: 0 0;
-        border: none;
-        color: #0f0;
-        font-family: "Courier New", monospace;
-        font-size: 16px;
-        width: 100%;
-        outline: 0;
-        padding: 0;
-        margin: 0;
-      }
-      #fake-input {
-        position: absolute;
-        top: 0;
-        left: 0;
-        color: transparent;
-        pointer-events: none;
-        white-space: pre;
-      }
-      .output {
-        margin-bottom: 10px;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-      }
-      .error {
-        color: red;
-      }
-      .success {
-        color: #0f0;
-      }
-      .highlight {
-        color: #ff0;
-      }
-      .error-highlight {
-        color: red;
-      }
-      a {
-        color: #0ff;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      .visually-hidden {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-      @media (max-width: 600px) {
-        #user-input,
-        body {
-          font-size: 14px;
-        }
-        #terminal {
-          padding: 10px;
-        }
-        #prompt {
-          margin-right: 7.5px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-      <div id="terminal">
-        <div id="initial-message" class="output success">Welcome to musheer360's web terminal.</div>
-        <div id="help-message" class="output">Type 'help' for available commands.</div>
-        <div id="command-output"></div>
-        <div id="input-line">
-          <span id="prompt">visitor@musheer360:~$</span>
-          <div id="input-container">
-            <label for="user-input" class="visually-hidden"
-              >Enter command</label
-            >
-            <input
-              type="text"
-              id="user-input"
-              autocomplete="off"
-              autocapitalize="off"
-              autofocus
-              aria-label="Enter command"
-            />
-            <span id="fake-input"></span>
-          </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Musheer Alam</title>
+        <meta
+            name="description"
+            content="Explore Musheer Alam's terminal themed portfolio. Discover expertise in cybersecurity, cloud, and AI. Navigate projects and connect with a tech innovator."
+        />
+        <meta name="author" content="Musheer Alam" />
+        <link rel="canonical" href="https://www.musheer360.com" />
+        <meta property="og:title" content="Musheer Alam" />
+        <meta
+            property="og:description"
+            content="Musheer Alam's personal space on the web."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.musheer360.com" />
+        <meta
+            property="og:image"
+            content="https://www.musheer360.com/banner.png"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Musheer Alam" />
+        <meta
+            name="twitter:description"
+            content="Musheer Alam's personal space on the web."
+        />
+        <meta
+            name="twitter:image"
+            content="https://www.musheer360.com/banner.jpg"
+        />
+        <link
+            rel="icon"
+            href="https://www.musheer360.com/favicon.ico"
+            type="image/x-icon"
+        />
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org",
+                "@type": "WebPage",
+                "name": "Musheer Alam's Portfolio",
+                "description": "Portfolio showcasing the skills and projects of Musheer Alam, a Computer Science student passionate about technology, AI, cybersecurity, Linux, and cloud computing.",
+                "url": "https://www.musheer360.com",
+                "mainEntity": {
+                    "@type": "Person",
+                    "name": "Musheer Alam",
+                    "url": "https://www.musheer360.com",
+                    "sameAs": [
+                        "https://linkedin.com/in/musheer360",
+                        "https://github.com/musheer360",
+                        "https://x.com/musheer360",
+                        "https://musheer360.tech",
+                        "https://musheer360.me"
+                    ],
+                    "jobTitle": "Aspiring Cybersecurity Expert",
+                    "skills": [
+                        "Cybersecurity",
+                        "Network Security",
+                        "Web App Security",
+                        "Programming",
+                        "Linux Administration",
+                        "Cloud Computing"
+                    ]
+                },
+                "mainContentOfPage": {
+                    "@type": "WebPageElement",
+                    "cssSelector": "#terminal"
+                },
+                "relatedLink": [
+                    "https://linktr.ee/BlankSlateWeb",
+                    "https://github.com/musheer360/QuoteSlate",
+                    "https://github.com/musheer360/NovaChat",
+                    "https://web.musheer360.com"
+                ],
+                "hasPart": [
+                    {
+                        "@type": "SoftwareApplication",
+                        "name": "BlankSlate",
+                        "url": "https://linktr.ee/BlankSlateWeb",
+                        "description": "Minimalistic new tab extension available for Chrome, Edge, and Firefox.",
+                        "applicationCategory": "Browser Extension",
+                        "operatingSystem": "Chrome, Firefox, Edge",
+                        "offers": {
+                            "@type": "Offer",
+                            "price": "0",
+                            "priceCurrency": "USD"
+                        }
+                    },
+                    {
+                        "@type": "SoftwareSourceCode",
+                        "name": "QuoteSlate",
+                        "codeRepository": "https://github.com/musheer360/QuoteSlate",
+                        "description": "API for inspirational quotes, built with Node.js and Postgres, currently hosts over 1,600 quotes.",
+                        "programmingLanguage": "Node.js"
+                    },
+                    {
+                        "@type": "MobileApplication",
+                        "name": "NovaChat",
+                        "url": "https://github.com/musheer360/NovaChat",
+                        "description": "AI-powered Android chat app using Google's Gemini API for NLP with a simple and intuitive interface.",
+                        "operatingSystem": "Android",
+                        "applicationCategory": "ChatApplication"
+                    },
+                    {
+                        "@type": "TechArticle",
+                        "name": "Sony Xperia M Homelab",
+                        "url": "https://web.musheer360.com",
+                        "description": "Revived an 11-year-old Sony Xperia M to run LineageOS with Termux as a mini server for tech experiments.",
+                        "about": {
+                            "@type": "Thing",
+                            "name": "Homelab"
+                        }
+                    }
+                ]
+            }
+        </script>
+        <style>
+            * {
+                cursor: default !important;
+            }
+            body,
+            html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                background-color: #000;
+                color: #0f0;
+                font-family: "Courier New", monospace;
+                overflow: hidden;
+                user-select: none;
+            }
+            #terminal {
+                height: 100vh;
+                padding: 20px;
+                box-sizing: border-box;
+                overflow-y: scroll;
+                scroll-behavior: auto;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            #terminal::-webkit-scrollbar {
+                display: none;
+            }
+            #input-line {
+                display: flex;
+                align-items: center;
+            }
+            #prompt {
+                color: #0f0;
+                margin-right: 10px;
+            }
+            #input-container {
+                position: relative;
+                flex-grow: 1;
+            }
+            #user-input {
+                background: 0 0;
+                border: none;
+                color: #0f0;
+                font-family: "Courier New", monospace;
+                font-size: 16px;
+                width: 100%;
+                outline: 0;
+                padding: 0;
+                margin: 0;
+            }
+            #fake-input {
+                position: absolute;
+                top: 0;
+                left: 0;
+                color: transparent;
+                pointer-events: none;
+                white-space: pre;
+            }
+            .output {
+                margin-bottom: 10px;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+            .error {
+                color: red;
+            }
+            .success {
+                color: #0f0;
+            }
+            .highlight {
+                color: #ff0;
+            }
+            .error-highlight {
+                color: red;
+            }
+            a {
+                color: #0ff;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            .visually-hidden {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
+            }
+            @media (max-width: 600px) {
+                #user-input,
+                body {
+                    font-size: 14px;
+                }
+                #terminal {
+                    padding: 10px;
+                }
+                #prompt {
+                    margin-right: 7.5px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="terminal">
+            <div id="initial-message" class="output success">Welcome to musheer360's web terminal.</div>
+            <div id="help-message" class="output">Type 'help' for available commands.</div>
+            <div id="command-output"></div>
+            <div id="input-line">
+                <span id="prompt">visitor@musheer360:~$</span>
+                <div id="input-container">
+                    <label for="user-input" class="visually-hidden"
+                        >Enter command</label
+                    >
+                    <input
+                        type="text"
+                        id="user-input"
+                        autocomplete="off"
+                        autocapitalize="off"
+                        autofocus
+                        aria-label="Enter command"
+                    />
+                    <span id="fake-input"></span>
+                </div>
+            </div>
         </div>
-      </div>
-    <script>
-      const commandOutput = document.getElementById("command-output");
-      const userInput = document.getElementById("user-input");
-      const fakeInput = document.getElementById("fake-input");
-      const initialMessage = document.getElementById("initial-message");
-      const helpMessage = document.getElementById("help-message");
-      const terminal = document.getElementById("terminal");
-      const prompt = "visitor@musheer360:~$";
+        <script>
+            const commandOutput = document.getElementById("command-output");
+            const userInput = document.getElementById("user-input");
+            const fakeInput = document.getElementById("fake-input");
+            const initialMessage = document.getElementById("initial-message");
+            const helpMessage = document.getElementById("help-message");
+            const terminal = document.getElementById("terminal");
+            const prompt = "visitor@musheer360:~$";
 
-      const commands = {
-        help: () => `Available commands:
+            const commands = {
+                help: () => `Available commands:
     about - Learn more about me
     skills - Discover what I can do
     projects - See what I've built
     contact - Get in touch with me
     clear - Clear the terminal screen
     defend - ???`,
-        about: () => `I'm Musheer Alam, a Computer Science student
+                about: () => `I'm Musheer Alam, a Computer Science student
 who lives and breathes tech.
 
 Cybersecurity is my playground,
@@ -301,7 +274,7 @@ When I'm not coding or diving into tech,
 I'm busy creating things that actually matter.
 
 Oh, and did I mention? I use Arch BTW.`,
-        skills: () => `Skills:
+                skills: () => `Skills:
 
     • Cybersecurity:
       - Network & Cloud Security
@@ -323,7 +296,7 @@ Oh, and did I mention? I use Arch BTW.`,
       - Cloud Computing (AWS, Azure, GCP)
       - Databases (Oracle, MySQL)
       - Hardware & PC Building Expertise`,
-        projects: () => `Some of my works:
+                projects: () => `Some of my works:
 
     • <a href="https://linktr.ee/BlankSlateWeb" target="_blank">BlankSlate</a>:
       - Minimalistic new tab extension.
@@ -344,128 +317,130 @@ Oh, and did I mention? I use Arch BTW.`,
       - Revived an 11-year-old Sony Xperia M.
       - Runs LineageOS with Termux.
       - A mini server for tech experiments.`,
-        contact: () => `Reach out:
+                contact: () => `Reach out:
 
     • Email: <a href="mailto:me@musheer360.com">me@musheer360.com</a>
     • GitHub: <a href="https://github.com/musheer360" target="_blank" rel="noopener">github.com/musheer360</a>
     • LinkedIn: <a href="https://linkedin.com/in/musheer360" target="_blank" rel="noopener">linkedin.com/in/musheer360</a>
     • X: <a href="https://x.com/musheer360" target="_blank" rel="noopener">x.com/musheer360</a>
     • YouTube: <a href="https://www.youtube.com/@TechAceYoutube" target="_blank" rel="noopener">youtube.com/@TechAceYoutube</a>`,
-        clear: () => {
-          commandOutput.innerHTML = "";
-          initialMessage.style.display = "none";
-          helpMessage.style.display = "none";
-          return "";
-        },
-        defend: () => {
-          const steps = [
-            "Initializing defenses...",
-            "Reinforcing firewalls...",
-            "Implementing IDS...",
-            "Deploying honeypots...",
-            "Activating threat monitoring...",
-            "Securing endpoints...",
-            "Defense systems online.",
-            "Systems check: All good.",
-            "You are now protected.",
-            "Just a simulation... or is it?",
-          ];
+                clear: () => {
+                    commandOutput.innerHTML = "";
+                    initialMessage.style.display = "none";
+                    helpMessage.style.display = "none";
+                    return "";
+                },
+                defend: () => {
+                    const steps = [
+                        "Initializing defenses...",
+                        "Reinforcing firewalls...",
+                        "Implementing IDS...",
+                        "Deploying honeypots...",
+                        "Activating threat monitoring...",
+                        "Securing endpoints...",
+                        "Defense systems online.",
+                        "Systems check: All good.",
+                        "You are now protected.",
+                        "Just a simulation... or is it?",
+                    ];
 
-          return steps
-            .map(
-              (step, index) =>
-                `[${"#".repeat(index + 1).padEnd(10, "-")}] ${step}`
-            )
-            .join("\n");
-        },
-      };
+                    return steps
+                        .map(
+                            (step, index) =>
+                                `[${"#".repeat(index + 1).padEnd(10, "-")}] ${step}`,
+                        )
+                        .join("\n");
+                },
+            };
 
-      function executeCommand(cmd) {
-        if (cmd in commands) {
-          return { output: commands[cmd](), success: true };
-        } else {
-          return {
-            output: `Command not found: ${cmd}.
+            function executeCommand(cmd) {
+                if (cmd in commands) {
+                    return { output: commands[cmd](), success: true };
+                } else {
+                    return {
+                        output: `Command not found: ${cmd}.
 Type 'help' for the list of commands.`,
-            success: false,
-          };
-        }
-      }
+                        success: false,
+                    };
+                }
+            }
 
-      function updateFakeInput() {
-        fakeInput.textContent = userInput.value;
-      }
+            function updateFakeInput() {
+                fakeInput.textContent = userInput.value;
+            }
 
-      function addNewPrompt() {
-        commandOutput.innerHTML += `<div class="output"><span class="highlight">${prompt}</span></div>`;
-        scrollToBottom();
-      }
+            function addNewPrompt() {
+                commandOutput.innerHTML += `<div class="output"><span class="highlight">${prompt}</span></div>`;
+                scrollToBottom();
+            }
 
-      function scrollToBottom() {
-        terminal.scrollTop = terminal.scrollHeight;
-      }
+            function scrollToBottom() {
+                terminal.scrollTop = terminal.scrollHeight;
+            }
 
-      function handleCommand(command) {
-        if (command === "") {
-          addNewPrompt();
-        } else {
-          const { output, success } = executeCommand(command);
-          if (command !== "clear") {
-            const highlightClass = success ? "highlight" : "error-highlight";
-            commandOutput.innerHTML += `<div class="output"><span class="${highlightClass}">${prompt} ${command}</span></div>`;
-            commandOutput.innerHTML += `<div class="output">${output}</div>`;
-          }
-        }
-        userInput.value = "";
-        fakeInput.textContent = "";
-        scrollToBottom();
-      }
+            function handleCommand(command) {
+                if (command === "") {
+                    addNewPrompt();
+                } else {
+                    const { output, success } = executeCommand(command);
+                    if (command !== "clear") {
+                        const highlightClass = success
+                            ? "highlight"
+                            : "error-highlight";
+                        commandOutput.innerHTML += `<div class="output"><span class="${highlightClass}">${prompt} ${command}</span></div>`;
+                        commandOutput.innerHTML += `<div class="output">${output}</div>`;
+                    }
+                }
+                userInput.value = "";
+                fakeInput.textContent = "";
+                scrollToBottom();
+            }
 
-      userInput.addEventListener("input", updateFakeInput);
-      userInput.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-          const command = this.value.trim().toLowerCase();
-          handleCommand(command);
-        }
-      });
+            userInput.addEventListener("input", updateFakeInput);
+            userInput.addEventListener("keydown", function (event) {
+                if (event.key === "Enter") {
+                    const command = this.value.trim().toLowerCase();
+                    handleCommand(command);
+                }
+            });
 
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-          scrollToBottom();
-        }
-      });
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Enter") {
+                    scrollToBottom();
+                }
+            });
 
-      document.addEventListener("mousedown", (e) => {
-        if (e.target !== userInput) {
-          e.preventDefault();
-          userInput.focus();
-        }
-      });
+            document.addEventListener("mousedown", (e) => {
+                if (e.target !== userInput) {
+                    e.preventDefault();
+                    userInput.focus();
+                }
+            });
 
-      userInput.addEventListener("blur", () => {
-        setTimeout(() => userInput.focus(), 0);
-      });
+            userInput.addEventListener("blur", () => {
+                setTimeout(() => userInput.focus(), 0);
+            });
 
-      userInput.focus();
-      updateFakeInput();
+            userInput.focus();
+            updateFakeInput();
 
-      window.addEventListener("resize", updateFakeInput);
+            window.addEventListener("resize", updateFakeInput);
 
-      window.addEventListener("load", scrollToBottom);
+            window.addEventListener("load", scrollToBottom);
 
-      const observer = new MutationObserver(scrollToBottom);
-      observer.observe(terminal, { childList: true, subtree: true });
+            const observer = new MutationObserver(scrollToBottom);
+            observer.observe(terminal, { childList: true, subtree: true });
 
-      function updateLayout() {
-        const viewportHeight = window.visualViewport.height;
-        terminal.style.height = `${viewportHeight}px`;
-        scrollToBottom();
-      }
+            function updateLayout() {
+                const viewportHeight = window.visualViewport.height;
+                terminal.style.height = `${viewportHeight}px`;
+                scrollToBottom();
+            }
 
-      window.visualViewport.addEventListener("resize", updateLayout);
-      window.addEventListener("orientationchange", updateLayout);
+            window.visualViewport.addEventListener("resize", updateLayout);
+            window.addEventListener("orientationchange", updateLayout);
 
-      updateLayout();
-    </script>
-  </body>
+            updateLayout();
+        </script>
+    </body>
 </html>
