@@ -502,7 +502,15 @@
     ls -la - List all files
     cowsay - Make a cow say something
     history - Show command history
-    theme - Change terminal theme`,
+    theme - Change terminal theme
+    quote - Display an inspirational quote
+    reboot - Reload the page
+    shutdown - Close the tab/window
+    matrix - Enter the Matrix (Ctrl+C to exit)
+    joke - Get a programming joke
+    fortune - Receive a tech fortune
+    dice - Roll a six-sided die
+    weather - Check simulated weather`,
                 about: () => `I'm Musheer Alam, a Computer Science student
 with a focus on Cybersecurity and Cloud Computing.
 
@@ -694,6 +702,327 @@ drwxr-xr-x  2 musheer360 users  4096 May 17 2025 .secrets`;
 
 Usage: theme [name]`;
                 },
+                // Fun additional commands
+                matrix: () => {
+                    currentCommand = "matrix";
+                    commandInterrupted = false;
+                    
+                    // Create matrix container
+                    const matrixContainer = document.createElement("div");
+                    matrixContainer.className = "fullscreen";
+                    matrixContainer.style.backgroundColor = "#000";
+                    matrixContainer.style.color = "#0f0";
+                    matrixContainer.style.fontFamily = "monospace";
+                    matrixContainer.style.fontSize = "16px";
+                    matrixContainer.style.overflow = "hidden";
+                    document.body.appendChild(matrixContainer);
+                    
+                    // Add exit instructions
+                    const exitInstructions = document.createElement("div");
+                    exitInstructions.textContent = "Press Ctrl+C to exit";
+                    exitInstructions.style.position = "fixed";
+                    exitInstructions.style.bottom = "20px";
+                    exitInstructions.style.right = "20px";
+                    exitInstructions.style.opacity = "0.7";
+                    matrixContainer.appendChild(exitInstructions);
+                    
+                    // Matrix characters
+                    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%\"'#&_(),.;:?!\\|{}<>[]^~";
+                    
+                    // Create columns
+                    const columns = Math.floor(window.innerWidth / 20);
+                    const drops = [];
+                    
+                    // Initialize drops
+                    for (let i = 0; i < columns; i++) {
+                        drops[i] = Math.floor(Math.random() * -20);
+                    }
+                    
+                    // Create canvas
+                    const canvas = document.createElement("canvas");
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                    matrixContainer.appendChild(canvas);
+                    
+                    const ctx = canvas.getContext("2d");
+                    ctx.font = "15px monospace";
+                    
+                    // Matrix animation
+                    function drawMatrix() {
+                        if (commandInterrupted || currentCommand !== "matrix") {
+                            document.body.removeChild(matrixContainer);
+                            currentCommand = null;
+                            addOutput("^C");
+                            scrollToBottom();
+                            return;
+                        }
+                        
+                        // Semi-transparent black to create trail effect
+                        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        
+                        ctx.fillStyle = "#0f0";
+                        
+                        // Loop through drops
+                        for (let i = 0; i < drops.length; i++) {
+                            // Random character
+                            const text = chars[Math.floor(Math.random() * chars.length)];
+                            
+                            // x = i * font width, y = drops[i] * font height
+                            ctx.fillText(text, i * 20, drops[i] * 20);
+                            
+                            // Send drop back to top randomly after it crosses the screen
+                            if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+                                drops[i] = 0;
+                            }
+                            
+                            // Increment y coordinate
+                            drops[i]++;
+                        }
+                        
+                        // Call function again
+                        setTimeout(drawMatrix, 33);
+                    }
+                    
+                    // Start matrix animation
+                    drawMatrix();
+                    
+                    return "";
+                },
+                
+                joke: () => {
+                    const jokes = [
+                        "Why do programmers prefer dark mode? Because light attracts bugs!",
+                        "Why did the developer go broke? Because he used up all his cache!",
+                        "How many programmers does it take to change a light bulb? None, that's a hardware problem!",
+                        "Why do Java developers wear glasses? Because they don't C#!",
+                        "A SQL query walks into a bar, walks up to two tables and asks, 'Can I join you?'",
+                        "Why was the JavaScript developer sad? Because he didn't Node how to Express himself!",
+                        "What's a pirate's favorite programming language? R!",
+                        "Why did the functions stop calling each other? They had too many arguments!",
+                        "What do you call a programmer from Finland? Nerdic!",
+                        "Why did the programmer quit his job? Because he didn't get arrays!"
+                    ];
+                    
+                    return jokes[Math.floor(Math.random() * jokes.length)];
+                },
+                
+                fortune: () => {
+                    const fortunes = [
+                        "You will soon embark on a new coding adventure.",
+                        "A mysterious bug in your code will soon reveal itself.",
+                        "Your next pull request will be accepted without changes.",
+                        "Today is a good day to refactor legacy code.",
+                        "You will receive praise for your elegant solution.",
+                        "A deployment you feared will go smoothly.",
+                        "Your code will pass all tests on the first try.",
+                        "Someone will ask for your help with a difficult problem.",
+                        "Your documentation will save a fellow developer hours of frustration.",
+                        "The feature you've been working on will delight users.",
+                        "You will find the perfect open source library for your needs.",
+                        "A senior developer will be impressed by your approach.",
+                        "Your commit history reveals a bright future."
+                    ];
+                    
+                    return `🔮 ${fortunes[Math.floor(Math.random() * fortunes.length)]}`;
+                },
+                
+                dice: () => {
+                    const roll = Math.floor(Math.random() * 6) + 1;
+                    
+                    const diceArt = [
+                        `
+┌─────────┐
+│         │
+│    ●    │
+│         │
+└─────────┘
+        `,
+                        `
+┌─────────┐
+│  ●      │
+│         │
+│      ●  │
+└─────────┘
+        `,
+                        `
+┌─────────┐
+│  ●      │
+│    ●    │
+│      ●  │
+└─────────┘
+        `,
+                        `
+┌─────────┐
+│  ●   ●  │
+│         │
+│  ●   ●  │
+└─────────┘
+        `,
+                        `
+┌─────────┐
+│  ●   ●  │
+│    ●    │
+│  ●   ●  │
+└─────────┘
+        `,
+                        `
+┌─────────┐
+│  ●   ●  │
+│  ●   ●  │
+│  ●   ●  │
+└─────────┘
+        `
+                    ];
+                    
+                    return `You rolled a ${roll}!\n${diceArt[roll-1]}`;
+                },
+                
+                weather: () => {
+                    const conditions = ["Sunny", "Cloudy", "Rainy", "Snowy", "Windy", "Stormy", "Foggy"];
+                    const temperatures = Array.from({length: 50}, (_, i) => i + 50); // 50-99°F
+                    
+                    const condition = conditions[Math.floor(Math.random() * conditions.length)];
+                    const temperature = temperatures[Math.floor(Math.random() * temperatures.length)];
+                    
+                    let icon = "";
+                    switch(condition) {
+                        case "Sunny": icon = "☀️"; break;
+                        case "Cloudy": icon = "☁️"; break;
+                        case "Rainy": icon = "🌧️"; break;
+                        case "Snowy": icon = "❄️"; break;
+                        case "Windy": icon = "💨"; break;
+                        case "Stormy": icon = "⛈️"; break;
+                        case "Foggy": icon = "🌫️"; break;
+                    }
+                    
+                    return `Current weather: ${icon} ${condition}, ${temperature}°F / ${Math.round((temperature - 32) * 5/9)}°C`;
+                },
+                
+                quote: () => {
+                    // Display loading message
+                    addOutput("Fetching an inspirational quote from QuoteSlate API...");
+                    
+                    // Set up currentCommand to allow for interruption
+                    currentCommand = "quote";
+                    commandInterrupted = false;
+                    
+                    // Fetch quote from QuoteSlate API
+                    // In a real implementation, this would use the actual API endpoint
+                    // For example: fetch('https://api.quoteslate.com/random')
+                    setTimeout(() => {
+                        if (commandInterrupted) {
+                            addOutput("^C");
+                            addNewPrompt();
+                            return;
+                        }
+                        
+                        try {
+                            // Simulate QuoteSlate API response
+                            // In production, this would be replaced with actual API response handling
+                            const quotes = [
+                                { text: "The best way to predict the future is to invent it.", author: "Alan Kay" },
+                                { text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs" },
+                                { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+                                { text: "It's not about ideas. It's about making ideas happen.", author: "Scott Belsky" },
+                                { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
+                                { text: "Code is like humor. When you have to explain it, it's bad.", author: "Cory House" },
+                                { text: "First, solve the problem. Then, write the code.", author: "John Johnson" },
+                                { text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.", author: "Martin Fowler" },
+                                { text: "The most disastrous thing that you can ever learn is your first programming language.", author: "Alan Kay" },
+                                { text: "The best error message is the one that never shows up.", author: "Thomas Fuchs" }
+                            ];
+                            
+                            // Get a random quote
+                            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                            
+                            // Format the quote in a cool way
+                            const quoteOutput = `
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║  "${randomQuote.text}"                                           
+║                                                                  ║
+║                                      — ${randomQuote.author}     
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+Powered by QuoteSlate API
+                            `;
+                            
+                            // Add the quote to the terminal
+                            addOutput(quoteOutput);
+                        } catch (error) {
+                            addOutput("Error fetching quote from QuoteSlate API. Please try again later.");
+                        }
+                        
+                        // Reset command state and add new prompt
+                        currentCommand = null;
+                        addNewPrompt();
+                    }, 1000);
+                    
+                    // Add comment explaining how to implement with real API
+                    // Implementation note: Replace the setTimeout and hardcoded quotes with:
+                    /*
+                    fetch('https://api.quoteslate.com/random')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            // Format and display the quote from the API response
+                            const quoteOutput = `
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║  "${data.quote}"                                           
+║                                                                  ║
+║                                      — ${data.author}     
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+Powered by QuoteSlate API
+                            `;
+                            addOutput(quoteOutput);
+                        })
+                        .catch(error => {
+                            addOutput("Error fetching quote from QuoteSlate API. Please try again later.");
+                            console.error('Error fetching quote:', error);
+                        })
+                        .finally(() => {
+                            currentCommand = null;
+                            addNewPrompt();
+                        });
+                    */
+                    
+                    return "";
+                },
+                
+                reboot: () => {
+                    // Add a confirmation message
+                    addOutput("Rebooting system...");
+                    
+                    // Use setTimeout to allow the message to be displayed before reloading
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                    
+                    return "";
+                },
+                
+                shutdown: () => {
+                    // Add a confirmation message
+                    addOutput("Shutting down...");
+                    
+                    // Use setTimeout to allow the message to be displayed before closing
+                    setTimeout(() => {
+                        window.close();
+                        // If window.close() doesn't work (due to browser restrictions)
+                        addOutput("Could not close the window automatically. Please close it manually.");
+                    }, 1000);
+                    
+                    return "";
+                },
             };
 
             // Special command handlers
@@ -740,6 +1069,25 @@ Usage: theme [name]`;
                     }
                 }
 
+                // Easter egg functionality
+                if (command === "cat .hidden_easter_egg") {
+                    // Create a fun easter egg message without ASCII art
+                    return `
+<span style="color: #ff5f5f">C</span><span style="color: #ff7f5f">o</span><span style="color: #ff9f5f">n</span><span style="color: #ffbf5f">g</span><span style="color: #ffdf5f">r</span><span style="color: #ffff5f">a</span><span style="color: #dfff5f">t</span><span style="color: #bfff5f">u</span><span style="color: #9fff5f">l</span><span style="color: #7fff5f">a</span><span style="color: #5fff5f">t</span><span style="color: #5fff7f">i</span><span style="color: #5fff9f">o</span><span style="color: #5fffbf">n</span><span style="color: #5fffdf">s</span><span style="color: #5fffff">!</span> <span style="color: #5fdfff">Y</span><span style="color: #5fbfff">o</span><span style="color: #5f9fff">u</span><span style="color: #5f7fff">'</span><span style="color: #5f5fff">v</span><span style="color: #7f5fff">e</span> <span style="color: #9f5fff">f</span><span style="color: #bf5fff">o</span><span style="color: #df5fff">u</span><span style="color: #ff5fff">n</span><span style="color: #ff5fdf">d</span> <span style="color: #ff5fbf">t</span><span style="color: #ff5f9f">h</span><span style="color: #ff5f7f">e</span> <span style="color: #ff5f5f">e</span><span style="color: #ff7f5f">a</span><span style="color: #ff9f5f">s</span><span style="color: #ffbf5f">t</span><span style="color: #ffdf5f">e</span><span style="color: #ffff5f">r</span> <span style="color: #dfff5f">e</span><span style="color: #bfff5f">g</span><span style="color: #9fff5f">g</span><span style="color: #7fff5f">!</span>
+
+<span style="color: #5fffbf">Fun fact:</span> The term "Easter egg" for hidden features originated with Atari's 1979 game "Adventure," 
+where programmer Warren Robinett hid his name in a secret room as a response to Atari's policy 
+of not crediting developers.
+
+<span style="color: #5f9fff">Did you know?</span> This portfolio terminal has several other hidden features and commands to discover!
+Try typing some unexpected commands or combinations to see what happens.
+
+<span style="color: #ffbf5f">Secret tip:</span> Try the command <span style="color: #ff5f5f">42</span> to discover the answer to life, the universe, and everything!
+
+<span style="color: #9fff5f">Congratulations on your curiosity!</span> The best developers are always exploring and discovering.
+                    `;
+                }
+                
                 if (command.startsWith("theme ")) {
                     const themeName = command.substring(6).trim();
                     if (themes[themeName]) {
@@ -1497,72 +1845,60 @@ Type 'help' for the list of commands.`,
                               browserInfo.includes("Android") ? "Android" : 
                               browserInfo.includes("iOS") ? "iOS" : "Unknown OS";
                 
+                // Get more detailed system information
+                const cpuCores = navigator.hardwareConcurrency || "Unknown";
+                const deviceMemory = navigator.deviceMemory ? `${navigator.deviceMemory} GB` : "Unknown";
                 const screenRes = `${window.screen.width}x${window.screen.height}`;
                 const colorDepth = `${window.screen.colorDepth}-bit`;
                 const language = navigator.language;
                 const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
                 const date = new Date().toLocaleDateString();
                 const time = new Date().toLocaleTimeString();
+                const platform = navigator.platform;
+                const connection = navigator.connection ? 
+                                  (navigator.connection.effectiveType || "Unknown") : 
+                                  "Unknown";
+                const doNotTrack = navigator.doNotTrack ? 
+                                  (navigator.doNotTrack === "1" ? "Enabled" : "Disabled") : 
+                                  "Unknown";
+                const uptime = Math.floor(performance.now() / 1000);
+                const uptimeFormatted = formatUptime(uptime);
                 
-                // Create neofetch display
-                const neofetchHTML = `<div class="neofetch-container">
-                    <div class="neofetch-info">
-                        <div class="neofetch-info-line">
-                            <div class="neofetch-info-label">User:</div>
-                            <div class="neofetch-info-value">visitor@musheer360</div>
-                        </div>
-                        <div class="neofetch-info-line">
-                            <div class="neofetch-info-label">OS:</div>
-                            <div class="neofetch-info-value">${osInfo}</div>
-                        </div>
-                        <div class="neofetch-info-line">
-                            <div class="neofetch-info-label">Browser:</div>
-                            <div class="neofetch-info-value">${browserName}</div>
-                        </div>
-                        <div class="neofetch-info-line">
-                            <div class="neofetch-info-label">User Agent:</div>
-                            <div class="neofetch-info-value">${browserInfo.substring(0, 50)}...</div>
-                        </div>
-                        <div class="neofetch-info-line">
-                            <div class="neofetch-info-label">Resolution:</div>
-                            <div class="neofetch-info-value">${screenRes}</div>
-                        </div>
-                        <div class="neofetch-info-line">
-                            <div class="neofetch-info-label">Color Depth:</div>
-                            <div class="neofetch-info-value">${colorDepth}</div>
-                        </div>
-                        <div class="neofetch-info-line">
-                            <div class="neofetch-info-label">Language:</div>
-                            <div class="neofetch-info-value">${language}</div>
-                        </div>
-                        <div class="neofetch-info-line">
-                            <div class="neofetch-info-label">Time Zone:</div>
-                            <div class="neofetch-info-value">${timeZone}</div>
-                        </div>
-                        <div class="neofetch-info-line">
-                            <div class="neofetch-info-label">Date:</div>
-                            <div class="neofetch-info-value">${date}</div>
-                        </div>
-                        <div class="neofetch-info-line">
-                            <div class="neofetch-info-label">Time:</div>
-                            <div class="neofetch-info-value">${time}</div>
-                        </div>
-                        <div class="neofetch-info-line">
-                            <div class="neofetch-info-label">Terminal:</div>
-                            <div class="neofetch-info-value">musheer360-web-terminal</div>
-                        </div>
-                        <div class="neofetch-info-line">
-                            <div class="neofetch-info-label">Shell:</div>
-                            <div class="neofetch-info-value">web-bash 5.1.16</div>
-                        </div>
-                        <div class="neofetch-info-line">
-                            <div class="neofetch-info-label">Theme:</div>
-                            <div class="neofetch-info-value">${currentTheme}</div>
-                        </div>
-                    </div>
-                </div>`;
-
-                return neofetchHTML;
+                // Format uptime in a human-readable format
+                function formatUptime(seconds) {
+                    const days = Math.floor(seconds / 86400);
+                    seconds %= 86400;
+                    const hours = Math.floor(seconds / 3600);
+                    seconds %= 3600;
+                    const minutes = Math.floor(seconds / 60);
+                    seconds %= 60;
+                    
+                    let result = "";
+                    if (days > 0) result += `${days}d `;
+                    if (hours > 0 || days > 0) result += `${hours}h `;
+                    if (minutes > 0 || hours > 0 || days > 0) result += `${minutes}m `;
+                    result += `${Math.floor(seconds)}s`;
+                    
+                    return result;
+                }
+                
+                return `User: visitor@musheer360
+OS: ${osInfo}
+Platform: ${platform}
+Browser: ${browserName}
+CPU Cores: ${cpuCores}
+Memory: ${deviceMemory}
+Resolution: ${screenRes}
+Color Depth: ${colorDepth}
+Connection: ${connection}
+Language: ${language}
+Time Zone: ${timeZone}
+Date/Time: ${date} ${time}
+Uptime: ${uptimeFormatted}
+Do Not Track: ${doNotTrack}
+Terminal: musheer360-web-terminal
+Shell: web-bash 5.1.16
+Theme: ${currentTheme}`;
             }
 
             // Start htop
@@ -1884,6 +2220,8 @@ Type 'help' for the list of commands.`,
                         userInput.value =
                             commandHistoryArray[commandHistoryIndex];
                         updateFakeInput();
+                        // Fix: Update cursor position to the end of input when navigating history
+                        updateCursorPosition();
                         event.preventDefault();
                     }
                 } else if (event.key === "ArrowDown") {
@@ -1896,6 +2234,8 @@ Type 'help' for the list of commands.`,
                         userInput.value = "";
                     }
                     updateFakeInput();
+                    // Fix: Update cursor position to the end of input when navigating history
+                    updateCursorPosition();
                     event.preventDefault();
                 }
 
