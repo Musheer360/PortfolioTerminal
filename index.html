@@ -490,6 +490,7 @@
 
             const commands = {
                 help: () => `Available commands:
+
     about - Learn more about me
     skills - Discover what I can do
     projects - See what I've built
@@ -506,7 +507,6 @@
     cowsay - Make a cow say something
     history - Show command history
     theme - Change terminal theme
-    quote - Display an inspirational quote
     reboot - Reload the page
     shutdown - Close the tab/window
     cmatrix - Enter the Matrix
@@ -514,47 +514,38 @@
     fortune - Receive a tech fortune
     dice - Roll a six-sided die`,
                 about: () => `I'm Musheer Alam, a Computer Science student
-with a focus on Cybersecurity and Cloud Computing.
+who lives and breathes tech.
 
-Currently working as a Research Intern at CloudThat in Bangalore,
-where I co-architected "Kubeguard," a Helm-based Kubernetes security suite.
+Cybersecurity is my playground,
+Linux is my trusty sidekick,
+and AI is the future I'm chasing.
 
-I hold several certifications including:
-- AWS Certified Cloud Practitioner
-- CompTIA Security+ (SY0-701)
-- ISC2 Certified in Cybersecurity (CC)
-- Google Cybersecurity Professional Certificate
-
-When I'm not securing systems or coding,
-I'm exploring new technologies and building
-projects that solve real-world problems.
+When I'm not coding or diving into tech,
+I'm busy creating things that actually matter.
 
 Oh, and did I mention? I use Arch BTW.`,
                 skills: () => `Skills:
 
-    • Cybersecurity & Risk Management:
-      - Vulnerability Management, Threat Intelligence
-      - Risk Assessment, CVE Analysis
-      - Incident Response, Security Monitoring
+    • Cybersecurity:
+      - Network & Cloud Security
+      - Web App & Endpoint Security
+      - Cryptography & Malware Analysis
 
-    • Security Tools & Technologies:
-      - Nessus, OpenVAS, Burp Suite, Metasploit
-      - Wireshark, SIEM (Splunk), Nmap, OSINT Framework
-      - Linux (Arch, Fedora, Debian-based: Kali, Ubuntu)
+    • Programming:
+      - Python, C/C++, Java, Kotlin
+      - HTML, CSS, JavaScript, jQuery
+      - Bash Scripting, VB Script
+      - Data Structures & Algorithms
 
-    • Programming & Scripting:
-      - Python (for security automation), C++, Java
-      - JavaScript, Node.js, Bash, PowerShell
-      - SQL, YAML, JSON, AI-driven code orchestration
+    • Linux:
+      - System Administration
+      - Kernel Optimization
+      - Shell Scripting
 
-    • Cloud & DevOps:
-      - AWS, Google Cloud Platform, Microsoft Azure
-      - Vercel, Cloudflare, Docker, Kubernetes
-      - Linux Administration, IaC, Git, CI/CD
-
-    • Networking & System Security:
-      - TCP/IP, Firewalls, IDS/IPS
-      - Endpoint Security, Linux Security Hardening`,
+    • Others:
+      - Cloud Computing (AWS, Azure, GCP)
+      - Databases (Oracle, MySQL)
+      - Hardware & PC Building Expertise`,
                 projects: () => `Some of my works:
 
     • <a href="https://linktr.ee/BlankSlateWeb" target="_blank">BlankSlate</a>:
@@ -572,12 +563,12 @@ Oh, and did I mention? I use Arch BTW.`,
       - Uses Google's Gemini API for NLP.
       - Simple and intuitive interface.
 
-    • <a href="https://web.musheer360.com" target="_blank">Privacy-Preserving Edge AI</a>:
+    • <a href="https://www.youtube.com/watch?v=v7lBubmyj3Y" target="_blank">Privacy-Preserving Edge AI</a>:
       - Optimized TinyLLaMA 1.1B for mobile devices.
       - Leveraged LLaMA.cpp inference for ARMv8-A.
       - Implemented GGUF quantization (Q5_K_M).
 
-    • <a href="https://web.musheer360.com" target="_blank">Secure Edge Server</a>:
+    • <a href="https://musheer360.medium.com/from-e-waste-to-web-server-transforming-an-11-year-old-phone-into-a-home-lab-1230508aaa74" target="_blank">Secure Edge Server</a>:
       - Transformed obsolete smartphone into secure server.
       - Optimized LineageOS, Termux, and Magisk.
       - Hardened with SSH keys, firewall rules, Cloudflare Tunnel.`,
@@ -870,108 +861,6 @@ Usage: theme [name]`;
                     
                     return `You rolled a ${roll}!\n${diceArt[roll-1]}`;
                 },
-                
-
-                
-                quote: () => {
-                    // Display loading message
-                    addOutput("Fetching an inspirational quote from QuoteSlate API...");
-                    
-                    // Set up currentCommand to allow for interruption
-                    currentCommand = "quote";
-                    commandInterrupted = false;
-                    
-                    // Fetch quote from QuoteSlate API
-                    // In a real implementation, this would use the actual API endpoint
-                    // For example: fetch('https://api.quoteslate.com/random')
-                    setTimeout(() => {
-                        if (commandInterrupted) {
-                            addOutput("^C");
-                            addNewPrompt();
-                            return;
-                        }
-                        
-                        try {
-                            // Simulate QuoteSlate API response
-                            // In production, this would be replaced with actual API response handling
-                            const quotes = [
-                                { text: "The best way to predict the future is to invent it.", author: "Alan Kay" },
-                                { text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs" },
-                                { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
-                                { text: "It's not about ideas. It's about making ideas happen.", author: "Scott Belsky" },
-                                { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
-                                { text: "Code is like humor. When you have to explain it, it's bad.", author: "Cory House" },
-                                { text: "First, solve the problem. Then, write the code.", author: "John Johnson" },
-                                { text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.", author: "Martin Fowler" },
-                                { text: "The most disastrous thing that you can ever learn is your first programming language.", author: "Alan Kay" },
-                                { text: "The best error message is the one that never shows up.", author: "Thomas Fuchs" }
-                            ];
-                            
-                            // Get a random quote
-                            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-                            
-                            // Format the quote in a cool way
-                            const quoteOutput = `
-╔══════════════════════════════════════════════════════════════════╗
-║                                                                  ║
-║  "${randomQuote.text}"                                           
-║                                                                  ║
-║                                      — ${randomQuote.author}     
-║                                                                  ║
-╚══════════════════════════════════════════════════════════════════╝
-
-Powered by QuoteSlate API
-                            `;
-                            
-                            // Add the quote to the terminal
-                            addOutput(quoteOutput);
-                        } catch (error) {
-                            addOutput("Error fetching quote from QuoteSlate API. Please try again later.");
-                        }
-                        
-                        // Reset command state and add new prompt
-                        currentCommand = null;
-                        addNewPrompt();
-                    }, 1000);
-                    
-                    // Add comment explaining how to implement with real API
-                    // Implementation note: Replace the setTimeout and hardcoded quotes with:
-                    /*
-                    fetch('https://api.quoteslate.com/random')
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            // Format and display the quote from the API response
-                            const quoteOutput = `
-╔══════════════════════════════════════════════════════════════════╗
-║                                                                  ║
-║  "${data.quote}"                                           
-║                                                                  ║
-║                                      — ${data.author}     
-║                                                                  ║
-╚══════════════════════════════════════════════════════════════════╝
-
-Powered by QuoteSlate API
-                            `;
-                            addOutput(quoteOutput);
-                        })
-                        .catch(error => {
-                            addOutput("Error fetching quote from QuoteSlate API. Please try again later.");
-                            console.error('Error fetching quote:', error);
-                        })
-                        .finally(() => {
-                            currentCommand = null;
-                            addNewPrompt();
-                        });
-                    */
-                    
-                    return "";
-                },
-                
                 reboot: () => {
                     // Add a confirmation message
                     addOutput("Rebooting system...");
@@ -2158,6 +2047,14 @@ Theme: ${currentTheme}`;
                 cursorBlock.style.height = "1.2em";
                 cursorBlock.style.marginTop = "auto";
                 cursorBlock.style.marginBottom = "auto";
+            }
+            
+            // Function to hide command history
+            function hideCommandHistory() {
+                const commandHistory = document.getElementById("command-history");
+                if (commandHistory) {
+                    commandHistory.style.display = "none";
+                }
             }
 
             // Helper function to calculate text width
