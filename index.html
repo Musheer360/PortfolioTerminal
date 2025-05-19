@@ -185,6 +185,9 @@
                 margin-left: 1px;
                 animation: blink 1s step-end infinite;
             }
+            .cursor-block.no-blink {
+                animation: none;
+            }
             .output {
                 margin-bottom: 10px;
                 white-space: pre-wrap;
@@ -506,11 +509,10 @@
     quote - Display an inspirational quote
     reboot - Reload the page
     shutdown - Close the tab/window
-    matrix - Enter the Matrix (Ctrl+C to exit)
+    cmatrix - Enter the Matrix
     joke - Get a programming joke
     fortune - Receive a tech fortune
-    dice - Roll a six-sided die
-    weather - Check simulated weather`,
+    dice - Roll a six-sided die`,
                 about: () => `I'm Musheer Alam, a Computer Science student
 with a focus on Cybersecurity and Cloud Computing.
 
@@ -703,8 +705,8 @@ drwxr-xr-x  2 musheer360 users  4096 May 17 2025 .secrets`;
 Usage: theme [name]`;
                 },
                 // Fun additional commands
-                matrix: () => {
-                    currentCommand = "matrix";
+                cmatrix: () => {
+                    currentCommand = "cmatrix";
                     commandInterrupted = false;
                     
                     // Create matrix container
@@ -716,15 +718,6 @@ Usage: theme [name]`;
                     matrixContainer.style.fontSize = "16px";
                     matrixContainer.style.overflow = "hidden";
                     document.body.appendChild(matrixContainer);
-                    
-                    // Add exit instructions
-                    const exitInstructions = document.createElement("div");
-                    exitInstructions.textContent = "Press Ctrl+C to exit";
-                    exitInstructions.style.position = "fixed";
-                    exitInstructions.style.bottom = "20px";
-                    exitInstructions.style.right = "20px";
-                    exitInstructions.style.opacity = "0.7";
-                    matrixContainer.appendChild(exitInstructions);
                     
                     // Matrix characters
                     const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%\"'#&_(),.;:?!\\|{}<>[]^~";
@@ -749,7 +742,7 @@ Usage: theme [name]`;
                     
                     // Matrix animation
                     function drawMatrix() {
-                        if (commandInterrupted || currentCommand !== "matrix") {
+                        if (commandInterrupted || currentCommand !== "cmatrix") {
                             document.body.removeChild(matrixContainer);
                             currentCommand = null;
                             addOutput("^C");
@@ -878,26 +871,7 @@ Usage: theme [name]`;
                     return `You rolled a ${roll}!\n${diceArt[roll-1]}`;
                 },
                 
-                weather: () => {
-                    const conditions = ["Sunny", "Cloudy", "Rainy", "Snowy", "Windy", "Stormy", "Foggy"];
-                    const temperatures = Array.from({length: 50}, (_, i) => i + 50); // 50-99°F
-                    
-                    const condition = conditions[Math.floor(Math.random() * conditions.length)];
-                    const temperature = temperatures[Math.floor(Math.random() * temperatures.length)];
-                    
-                    let icon = "";
-                    switch(condition) {
-                        case "Sunny": icon = "☀️"; break;
-                        case "Cloudy": icon = "☁️"; break;
-                        case "Rainy": icon = "🌧️"; break;
-                        case "Snowy": icon = "❄️"; break;
-                        case "Windy": icon = "💨"; break;
-                        case "Stormy": icon = "⛈️"; break;
-                        case "Foggy": icon = "🌫️"; break;
-                    }
-                    
-                    return `Current weather: ${icon} ${condition}, ${temperature}°F / ${Math.round((temperature - 32) * 5/9)}°C`;
-                },
+
                 
                 quote: () => {
                     // Display loading message
@@ -2172,9 +2146,10 @@ Theme: ${currentTheme}`;
             cursorBlock.className = "cursor-block";
             document.getElementById("input-container").appendChild(cursorBlock);
 
-            // Function to update cursor position
+            // Function to update cursor position based on caret position
             function updateCursorPosition() {
-                const inputText = userInput.value;
+                const caretPos = userInput.selectionStart;
+                const inputText = userInput.value.substring(0, caretPos);
                 const textWidth = getTextWidth(inputText);
                 cursorBlock.style.position = "absolute";
                 cursorBlock.style.left = textWidth + "px";
@@ -2193,8 +2168,43 @@ Theme: ${currentTheme}`;
                 return context.measureText(text).width;
             }
 
-            // Update cursor position on input
-            userInput.addEventListener("input", updateCursorPosition);
+            // Cursor blink control variables
+            let cursorBlinkTimeout;
+            
+            // Function to pause cursor blinking
+            function pauseCursorBlink() {
+                // Clear any existing timeout
+                if (cursorBlinkTimeout) {
+                    clearTimeout(cursorBlinkTimeout);
+                }
+                
+                // Add no-blink class to stop animation
+                cursorBlock.classList.add("no-blink");
+                
+                // Set timeout to resume blinking after 1 second
+                cursorBlinkTimeout = setTimeout(() => {
+                    cursorBlock.classList.remove("no-blink");
+                }, 1000);
+            }
+            
+            // Update cursor position on input and selection change
+            userInput.addEventListener("input", function() {
+                updateCursorPosition();
+                pauseCursorBlink();
+            });
+            
+            userInput.addEventListener("click", function() {
+                updateCursorPosition();
+                pauseCursorBlink();
+            });
+            
+            userInput.addEventListener("keyup", function(event) {
+                updateCursorPosition();
+                // Only pause blink on navigation keys
+                if (event.key.startsWith("Arrow") || event.key === "Backspace" || event.key === "Delete") {
+                    pauseCursorBlink();
+                }
+            });
             
             // Update cursor position on focus and window resize
             userInput.addEventListener("focus", updateCursorPosition);
@@ -2287,6 +2297,12 @@ Theme: ${currentTheme}`;
                 }
             });
 
+            // Disable right-click context menu
+            document.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+                return false;
+            });
+            
             document.addEventListener("mousedown", (e) => {
                 if (
                     e.target !== userInput &&
